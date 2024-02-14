@@ -43,13 +43,16 @@ docker run --rm -e BEARER_TOKEN="<YOUR TOKEN>" -e API_USERNAME="<YOUR voip.ms EM
 
 env variables by default are defined in `.env`, load it explicitly with param --env-file.
 ```shell
-docker compose --env-file .env up --build
+docker compose --env-file .env up --build --pull always
 ``` 
 
 Create compose.yaml file. Values in `${}` will be replaced with values from `.env` file.
 ```yaml
 services:
-  server:
+  voip-balance-notification:
+    container_name: voip-balance-notification
+    image: vit100/voip-balance-notification
+    restart: unless-stopped
     build:
       context: .
     environment:

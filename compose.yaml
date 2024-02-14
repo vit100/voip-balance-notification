@@ -8,7 +8,10 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
+  voip-balance-notification:
+    container_name: voip-balance-notification
+    image: vit100/voip-balance-notification
+    restart: unless-stopped
     build:
       context: .
     environment:
