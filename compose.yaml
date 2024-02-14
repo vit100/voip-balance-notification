@@ -12,8 +12,6 @@ services:
     container_name: voip-balance-notification
     image: vit100/voip-balance-notification
     restart: unless-stopped
-    dns:
-      - 127.0.0.1
     build:
       context: .
     environment:
