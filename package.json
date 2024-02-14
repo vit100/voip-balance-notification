@@ -1,0 +1,37 @@
+{
+  "name": "voip-balance-notification",
+  "version": "1.0.0",
+  "description": "Voip.ms balance sender",
+  "homepage": "https://github.com/vit100/voip-balance-notification",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/vit100/voip-balance-notification"
+  },
+  "maintainers": [
+    {
+      "name": "Vitaliy Markitanov"
+    }
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start:debug": "nodemon --inspect",
+    "start": "node index.js",
+    "docker:build": "docker build -t vit100/voip-balance-notification .",
+    "docker:push": "docker push vit100/voip-balance-notification",
+    "docker:push-readme": "docker pushrm vit100/voip-balance-notification",
+    "//readme": "see: https://github.com/christian-korneck/docker-pushrm?tab=readme-ov-file",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vitaliy Markitanov",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.1",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.4",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
