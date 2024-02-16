@@ -40,14 +40,18 @@ async function run() {
   const clientBalances = await getBalances();
 
   for (const balance of clientBalances) {
-    if (balance.balance <= balance.threshold) {
+    if (balance.balance <= balance.threshold && balance.email) {
       await sendMailAsync(balance);
     }
   }
 }
 
 cron.schedule(process.env.CRON_SCHEDULE || "* * * * *", async () => {
-  await run();
+  try {
+    await run();
+  } catch (error) {
+  console.error(`${Date()}. Sending failed.`, error)    
+  }
 });
 
 console.log(
