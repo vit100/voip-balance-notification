@@ -18,18 +18,26 @@ module.exports = async function sendMailAsync(balanceData) {
     Sincerely, 
     VoipRobot`;
 
-  const html = `<p>Dear ${balanceData.firstName},</p>
+  const html = `<!DOCTYPE html><html><head></head><body><p>Dear ${balanceData.firstName},</p>
     <p>We are writing to inform you that your balance for phone service on voipinterface.net has dropped below the threshold limit of ${thresholdFormatted}.</p>
     <p>This is a reminder to make a payment to avoid any service interruption. Your current balance: ${balanceFormatted}.</p>
     <p>You can make a payment online by logging into your account at <a href="voipinterface.net">voipinterface.net</a>.</p>
     <p>We appreciate your business and hope you enjoy our phone service. If you have any questions or concerns, please do not hesitate to contact us - Vitaliy is your point of contact.</p>
     <p>Sincerely,</p>
-    <p>VoipRobot</p>`;
+    <p>VoipRobot</p></body></html>`;
 
   const msg = {
     to: balanceData.email,
-    from: process.env.SEND_FROM_EMAIL,
+    to: {
+      name: `${balanceData.firstName} ${balanceData.lastName}`,
+      email: balanceData.email,
+    },
+    from: {
+      name: `${process.env.SEND_FROM_NAME}`,
+      email: process.env.SEND_FROM_EMAIL,
+    },
     subject: "Low balance for your phone service.",
+    bcc: [process.env.BCC],
     text: text,
     html: html,
   };
@@ -39,6 +47,6 @@ module.exports = async function sendMailAsync(balanceData) {
       console.log(`${Date()}. Email sent to ${balanceData.email}, ${text}`);
     })
     .catch((error) => {
-      console.error(error);
+      console.error(`${Date()}.`, error);
     });
 };
