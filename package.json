@@ -17,7 +17,7 @@
     "start:dev": "nodemon",
     "start:debug": "nodemon --inspect",
     "start": "node index.js",
-    "docker:build:arm64": "docker build -t vit100/voip-balance-notification --platform linux/arm64.",
+    "docker:build:arm64": "docker build -t vit100/voip-balance-notification --platform linux/arm64 .",
     "docker:push": "docker push vit100/voip-balance-notification",
     "docker:push-readme": "docker pushrm vit100/voip-balance-notification",
     "//readme": "see: https://github.com/christian-korneck/docker-pushrm?tab=readme-ov-file",
