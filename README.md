@@ -26,7 +26,7 @@ Data object for template has this shape:
 ### 2. Voip.ms API access configuration
 Details are [here](https://voip.ms/business/resources/api).
 
-TL;DR You need to enable API access on voip.ms portal and it will give you 3 params for your app config below: `BEARER_TOKEN`, `API_USERNAME`, `API_PASSWORD`.
+**TL;DR** You need to enable API access on voip.ms portal and it will give you 3 params for your app config below: `BEARER_TOKEN`, `API_USERNAME`, `API_PASSWORD`.
 
 ### 3. App configuration:
 Make copy of `.env_sample` and name it as `.env`
@@ -56,12 +56,12 @@ CRON_SCHEDULE="* * * * *"
 npm run install
 npm run start
 ```
-1. ### Docker
+2. ### Docker
 ```shell
 docker run --rm -e BEARER_TOKEN="<YOUR TOKEN>" -e API_USERNAME="<YOUR voip.ms EMAIL>" -e API_PASSWORD="<YOUR PASS>" -e SENDGRID_KEY="" -e SEND_FROM_EMAIL="" -e CRON_SCHEDULE="* * * * *" -e BASE_URL="https://voip.ms/api/v1/rest.php" vit100/voip-balance-notification
 ```
 
-1. ### Docker-compose
+3. ### Docker-compose
 
 env variables by default are defined in `.env`, load it explicitly with param --env-file.
 ```shell
