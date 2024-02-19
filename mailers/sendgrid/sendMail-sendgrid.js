@@ -1,6 +1,8 @@
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_KEY);
 
+const { inspect } = require("util");
+
 module.exports = async function sendMailAsync(balanceData) {
   const balanceFormatted = `${Intl.NumberFormat("en-US", {
     style: "currency",
@@ -24,6 +26,7 @@ module.exports = async function sendMailAsync(balanceData) {
     template_id: process.env.SENDGRID_TEMPLATEID,
     dynamicTemplateData: {
       firstName: balanceData.firstName,
+      lastName: balanceData.lastName,
       balanceFormatted,
       thresholdFormatted,
     },
@@ -38,6 +41,6 @@ module.exports = async function sendMailAsync(balanceData) {
       );
     })
     .catch((error) => {
-      console.error(`${Date()}.`, error);
+      console.error(`${Date()}.`, inspect(error, null, null, true));
     });
 };

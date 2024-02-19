@@ -7,19 +7,39 @@ https://github.com/vit100/voip-balance-notification
 >
 > This app will send email to reseller customers of VOIP.ms via sendgrid.
 
-## How to use
-### Configuration:
+## Configuration
+### 1. Sendgrid configuration
+
+This app is using Sendgrid's templates. You need to create one, it will give you `TEMPLATEID` which you will use in app configuration later.
+
+Sendgrid Template engine is based on Handlebars (see details [here]( https://docs.sendgrid.com/for-developers/sending-email/using-handlebars/)).
+Data object for template has this shape:
+```json
+{
+"firstName": "string",
+"lastName": "string",
+"balanceFormatted": "USD currency formatted string",
+"thresholdFormatted": "USD currency formatted string",
+}
+```
+
+### 2. Voip.ms API access configuration
+Details are [here](https://voip.ms/business/resources/api).
+
+TL;DR You need to enable API access on voip.ms portal and it will give you 3 params for your app config below: `BEARER_TOKEN`, `API_USERNAME`, `API_PASSWORD`.
+
+### 3. App configuration:
 Make copy of `.env_sample` and name it as `.env`
 
 ```text
 // this from voip.ms portal, API access section
-BASE_URL = "https://voip.ms/api/v1/rest.php"
+BASE_URL="https://voip.ms/api/v1/rest.php"
 BEARER_TOKEN="<TOKEN>"
 API_USERNAME="<Portal email>"
 API_PASSWORD="API password"
 
 SENDGRID_KEY="SENDGRID KEY - voipinterface-balance-notifications"
-SENDGRID_TEMPLATEID= "<id of dynamic template from sendgrid>"
+SENDGRID_TEMPLATEID="<id of dynamic template from sendgrid>"
 
 // Change to your verified sender
 SEND_FROM_EMAIL="info@your-domain.com"
@@ -28,10 +48,9 @@ SEND_FROM_EMAIL="info@your-domain.com"
 CRON_SCHEDULE="* * * * *"
 //Run every midnight
 //CRON_SCHEDULE="0 0 * * *"
-
 ```
 
-
+## How to run.
 1. ### Node
 ```shell
 npm run install
