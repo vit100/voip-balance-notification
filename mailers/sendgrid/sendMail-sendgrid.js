@@ -22,7 +22,7 @@ module.exports = async function sendMailAsync(balanceData) {
       name: `${process.env.SEND_FROM_NAME}`,
       email: process.env.SEND_FROM_EMAIL,
     },
-    bcc: [process.env.BCC],
+    bcc: [process.env.SEND_BCC],
     template_id: process.env.SENDGRID_TEMPLATEID,
     dynamicTemplateData: {
       firstName: balanceData.firstName,
