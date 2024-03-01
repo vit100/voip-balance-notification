@@ -19,7 +19,7 @@ module.exports = async function sendMailAsync(balanceData) {
       email: balanceData.email,
     },
     from: {
-      name: `${process.env.SEND_FROM_NAME}`,
+      name: process.env.SEND_FROM_NAME,
       email: process.env.SEND_FROM_EMAIL,
     },
     bcc: [process.env.SEND_BCC],
@@ -35,9 +35,7 @@ module.exports = async function sendMailAsync(balanceData) {
     .send(msg)
     .then(() => {
       console.log(
-        `${Date()}. Email sent to ${balanceData.email}, ${JSON.stringify(
-          balanceData
-        )}`
+        `${Date()}. Email sent ${JSON.stringify(msg)}`
       );
     })
     .catch((error) => {
