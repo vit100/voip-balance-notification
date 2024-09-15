@@ -15,8 +15,8 @@ let config = {
 
 module.exports = async function getClientThresholdAsync(clientId) {
   try {
-    config.url = `${config.url}&client=${clientId}`;
-    const response = await axios.request(config);
+    const url = `${config.url}&client=${clientId}`;
+    const response = await axios.request({...config, url});
     return response.data.threshold_information;
   } catch (error) {
     console.error(Date(), error);
